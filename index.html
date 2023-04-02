@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <title>Візуалізація методу Шеннона-фанно</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-wrapper">
+                <div class="select-wrapper">
+                    <div class="select-block">
+                        <input class="input-hidden select-1" type="radio" name="header" id="without" value="1" checked>
+                        <label class="select-label" for="without">Без ймовірності</label>
+                    </div>
+                    <div class="select-block">
+                        <input class="input-hidden select-1" type="radio" name="header" id="with" value="2">
+                        <label class="select-label" for="with">Із ймовірностю</label>
+                    </div>
+                </div>
+                <div class="header-input">
+                    <div class="header-input-wrapper active" id="wrapper-1">
+                        <input class="header-input-element" id="input-value-1" type="text" placeholder="Повідомлення (AABCEDE)">
+                    </div>
+                    <div class="header-input-wrapper" id="wrapper-2">
+                        <input class="header-input-element" id="input-value-2" type="text" placeholder="Алфавіт (ABCDE)">
+                        <input class="header-input-element" id="input-value-3" type="text" placeholder="Ймовірності (15 15 40 10 20)">
+                    </div>
+                </div>
+                <button class="header-btn-submit" id="submit">
+                    Розрахувати
+                </button>
+            </div>
+        </header>
+        <main class="body">
+            <div class="select-wrapper">
+                <div class="select-block" id="body-wrapper-1">
+                    <input class="input-hidden select-2" type="radio" name="body" id="code" value="1" checked>
+                    <label class="select-label" for="code">Код</label>
+                </div>
+                <div class="select-block" id="body-wrapper-2">
+                    <input class="input-hidden select-2" type="radio" name="body" id="tree" value="2">
+                    <label class="select-label" for="tree">Дерево</label>
+                </div>
+            </div>
+            <div class="body-input">
+                <div class="body-input-wrapper active" id="body-input-1">
+                    <table id="table" class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Значення</th>
+                                <th>Ймовірність</th>
+                                <th>Код</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="body-input-wrapper" id="body-input-2"></div>
+            </div>
+        </main>
+    </body>
+    <script src="./d3.v3.js"></script>
+    <script src="./script.js"></script>
+</html>
