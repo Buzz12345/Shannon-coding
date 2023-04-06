@@ -194,7 +194,7 @@ function generateTreeData(inpData) {
 
     let groupss = [...groups]
 
-    for (let i = 0; i < groupss.length; i++) {
+    for (let i = 0; i < groupss.length - 1; i++) {
         if (groupss[i].level > 2) {
             groupss.push({
                 parent: (groupss[i].parent).concat(groupss[i + 1].parent),
