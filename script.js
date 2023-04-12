@@ -163,12 +163,14 @@ function generateCode() {
     }
 
     const codes = recursive(0, input.length - 1)
+    console.log(codes)
     codes.forEach((item) => {
         let index = alphabet.indexOf(item.symbol)
         code[index] = item.code
     })
 
     const tree = generateTreeData(structure)
+    if (tree == null) return;
     console.log(JSON.stringify(tree)) 
     drawTree({width: 1000, height: 600, padding: 50, treeData: tree})
 } 
@@ -194,7 +196,7 @@ function generateTreeData(inpData) {
 
     let groupss = [...groups]
 
-    for (let i = 0; i < groupss.length - 1; i++) {
+    for (let i = 0; i < groupss.length; i++) {
         if (groupss[i].level > 2) {
             groupss.push({
                 parent: (groupss[i].parent).concat(groupss[i + 1].parent),
@@ -225,6 +227,20 @@ function generateTreeData(inpData) {
         return clearData[0]
     }
     else if (clearData.length == 2) {
+        return {
+            parent: (clearData[0].parent).concat(clearData[1].parent),
+            level: 1,
+            chance: clearData[0].chance + clearData[1].chance,
+            children: [
+                clearData[0],
+                clearData[1]
+            ]
+        }
+    }
+    else if (clearData.length == 3) {
+        clearData[1].parent.concat(clearData[2].parent)
+        clearData[1].chance += clearData[2].chance
+        clearData[1].children.push(clearData[2])
         return {
             parent: (clearData[0].parent).concat(clearData[1].parent),
             level: 1,
