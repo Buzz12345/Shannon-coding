@@ -95,6 +95,7 @@ function getChance() {
 function parseChance(s) {
     let filtered = s.replace(/[^0-9.' ']/gi, '')
 
+    chance = []
     let val = ""
     for (let i = 0; i < filtered.length; i++) {
         if (val == "" && filtered[i] == ' ') {
@@ -128,20 +129,23 @@ function generateCode() {
     function recursive(start, end, level = 0, parent = null, isLeftChild = false) {
         // Випадок, коли залишилась лише одна літера
         if (start === end) {
-            const node = { symbol: alphabet[start], code: "", chance: chance[start], level: level, parent: parent, isLeftChild: isLeftChild };
+            const node = { symbol: input[start].symbol, code: "", chance: input[start].chance, level: level, parent: parent, isLeftChild: isLeftChild };
             structure.push(node);
             return [node];
         }
 
         // Розрахунок суми ймовірностей у підмасиві
-        const sum = chance.slice(start, end + 1).reduce((a, b) => a + b);
+        let sum = 0
+        for (let i = start; i < end + 1; i++) {
+            sum += input[i].chance
+        }
 
         // Розрахунок оптимального розділу
         let temp = 0;
         let index = -1;
 
         for (let i = start; i <= end; i++) {
-            temp += chance[i];
+            temp += input[i].chance;
             const diff = Math.abs(sum - 2 * temp);
 
             if (index === -1 || diff < smallestDiff) {
